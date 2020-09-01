@@ -7,6 +7,7 @@ import './App.css';
 
 function App() {
   const [countries, setCountries] = useState([]);
+  const [query, setQuery] = useState('');
 
   useEffect(() => {
     fetch('https://restcountries.eu/rest/v2/all')
@@ -14,13 +15,23 @@ function App() {
       .then(result => setCountries(() => result))
   }, []);
 
+  const handleSearch = event => setQuery(event.target.value);
+
+  const filteredCountries = () => {
+    if (query) {
+      return countries.filter(country => country.name.toLowerCase().includes(query.toLowerCase()));
+    }
+
+    return countries;
+  }
+
   return (
     <div className="app">
       <Navbar/>
       <div className="app__content">
-        <SearchBar/>
+        <SearchBar handleSearch={handleSearch}/>
         <Filter/>
-        {countries.map(({flag, name, population, region, capital}) => (
+        {filteredCountries().map(({flag, name, population, region, capital}) => (
           <Card key={name} flag={flag} name={name} population={population} region={region} capital={capital}/>
         ))}
       </div>
