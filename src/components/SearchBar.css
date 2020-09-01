@@ -7,7 +7,8 @@
   align-items: center;
   color: #CACACA;
   border-radius: 4pt;
-  box-shadow: 0 0 10px 0 hsl(0, 0%, 70%);;
+  box-shadow: 0 0 10px -5px hsl(0, 0%, 70%);
+  background: #FFFFFF;
 }
 
 .searchBar__icon {
