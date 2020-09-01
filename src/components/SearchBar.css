@@ -1,7 +1,6 @@
 .searchBar {
-  margin: 24pt 0;
   padding: 8pt;
-  width: 80vw;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
