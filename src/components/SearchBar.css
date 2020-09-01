@@ -1,0 +1,26 @@
+.searchBar {
+  padding: 8pt;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #CACACA;
+  border-radius: 4pt;
+  box-shadow: 0 0 10px -5px hsl(0, 0%, 70%);
+  background: #FFFFFF;
+}
+
+.searchBar__icon {
+  flex: 1;
+  height: 10pt;
+}
+
+.searchBar__input {
+  flex: 9;
+  border: 0;
+  padding: 4pt;
+}
+
+.searchBar__input:focus {
+  outline: 0;
+}

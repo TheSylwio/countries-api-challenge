@@ -1,0 +1,31 @@
+.card {
+  border-radius: 4pt;
+  width: 80%;
+  margin-top: 24pt;
+  background: #FFFFFF;
+  box-shadow: 0 0 10px -5px hsl(0, 0%, 70%);
+}
+
+.card__flag {
+  width: 100%;
+  border-radius: 4pt 4pt 0 0;
+  background-size: cover;
+}
+
+.card__content {
+  padding: 24pt;
+}
+
+.content__header {
+  font-weight: 800;
+  font-size: 21px;
+  margin-bottom: 18pt;
+}
+
+.content__description p {
+  line-height: 1.1em;
+}
+
+.content__description strong {
+  font-weight: 600;
+}
