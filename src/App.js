@@ -8,6 +8,7 @@ import './App.css';
 function App() {
   const [countries, setCountries] = useState([]);
   const [query, setQuery] = useState('');
+  const [filter, setFilter] = useState('');
 
   useEffect(() => {
     fetch('https://restcountries.eu/rest/v2/all')
@@ -17,12 +18,20 @@ function App() {
 
   const handleSearch = event => setQuery(event.target.value);
 
+  const handleFilter = event => setFilter(event.target.value);
+
   const filteredCountries = () => {
+    let filteredCountries = countries;
+
     if (query) {
-      return countries.filter(country => country.name.toLowerCase().includes(query.toLowerCase()));
+      filteredCountries = filteredCountries.filter(country => country.name.toLowerCase().includes(query.toLowerCase()));
     }
 
-    return countries;
+    if (filter) {
+      filteredCountries = filteredCountries.filter(country => country.region.toLowerCase().includes(filter.toLowerCase()));
+    }
+
+    return filteredCountries;
   }
 
   return (
@@ -30,7 +39,7 @@ function App() {
       <Navbar/>
       <div className="app__content">
         <SearchBar handleSearch={handleSearch}/>
-        <Filter/>
+        <Filter handleFilter={handleFilter}/>
         {filteredCountries().map(({flag, name, population, region, capital}) => (
           <Card key={name} flag={flag} name={name} population={population} region={region} capital={capital}/>
         ))}

@@ -3,7 +3,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faAngleDown} from '@fortawesome/free-solid-svg-icons'
 import './Filter.css';
 
-function Filter() {
+function Filter(props) {
   const filterOptions = [
     'Filter by Region',
     'Africa',
@@ -11,11 +11,7 @@ function Filter() {
     'Asia',
     'Europe',
     'Oceania'
-  ]
-
-  const handleChangeOption = event => {
-    // TODO: Implement
-  }
+  ];
 
   return (
     <div className='filter'>
@@ -23,7 +19,7 @@ function Filter() {
         {filterOptions.map((option, index) => (
           <div className="filter__value" key={index}>
             <input type="radio" className='filter__input' id={index} value={option.toLowerCase()} name='country'
-                   checked={index === 0 ? 'checked' : null} onChange={handleChangeOption}/>
+                   checked={index === 0 ? 'checked' : null} onChange={props.handleFilter}/>
             <p className='filter__text'>{option}</p>
           </div>
         ))}
