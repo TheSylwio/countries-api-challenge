@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import {BrowserRouter as Router} from "react-router-dom";
 import Card from "./components/Card";
 import Filter from "./components/Filter";
 import Navbar from "./components/Navbar";
@@ -35,16 +36,18 @@ function App() {
   }
 
   return (
-    <div className="app">
-      <Navbar/>
-      <div className="app__content">
-        <SearchBar handleSearch={handleSearch}/>
-        <Filter handleFilter={handleFilter}/>
-        {filteredCountries().map(({flag, name, population, region, capital}) => (
-          <Card key={name} flag={flag} name={name} population={population} region={region} capital={capital}/>
-        ))}
+    <Router>
+      <div className="app">
+        <Navbar/>
+        <div className="app__content">
+          <SearchBar handleSearch={handleSearch}/>
+          <Filter handleFilter={handleFilter}/>
+          {filteredCountries().map(({flag, name, population, region, capital}) => (
+            <Card key={name} flag={flag} name={name} population={population} region={region} capital={capital}/>
+          ))}
+        </div>
       </div>
-    </div>
+    </Router>
   );
 }
 
