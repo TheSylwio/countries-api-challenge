@@ -1,16 +1,15 @@
 import React from "react";
-import {Link} from 'react-router-dom';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faMoon} from '@fortawesome/free-solid-svg-icons'
 import './Navbar.css';
 
 function Navbar() {
   return (
     <nav className='navbar'>
-      <Link to='/'>
-        <h1 className='navbar__header'>Where in the world?</h1>
-      </Link>
+      <h1 className='navbar__header'>Where in the world?</h1>
       <button className='navbar__button'>
-        {/* TODO: Insert Icon */}
-        Dark Mode
+        <FontAwesomeIcon icon={faMoon}/>
+        <span>Dark Mode</span>
       </button>
     </nav>
   );
