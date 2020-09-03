@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import Card from "../components/Card";
 import Filter from "../components/Filter";
 import SearchBar from "../components/SearchBar";
+import './HomePage.css';
 
 function Homepage(props) {
   const [query, setQuery] = useState('');
@@ -28,9 +29,11 @@ function Homepage(props) {
     <>
       <SearchBar handleSearch={handleSearch}/>
       <Filter handleFilter={handleFilter}/>
-      {filteredCountries().map(({flag, name, population, region, capital}) => (
-        <Card key={name} flag={flag} name={name} population={population} region={region} capital={capital}/>
-      ))}
+      <div className="cardsContainer">
+        {filteredCountries().map(({flag, name, population, region, capital}) => (
+          <Card key={name} flag={flag} name={name} population={population} region={region} capital={capital}/>
+        ))}
+      </div>
     </>
   );
 }
