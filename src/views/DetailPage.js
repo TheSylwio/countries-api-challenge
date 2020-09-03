@@ -1,10 +1,22 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {useHistory} from "react-router-dom";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faArrowLeft} from '@fortawesome/free-solid-svg-icons'
 import './DetailPage.css';
 
-function DetailPage({country}) {
+function DetailPage({country: {borders, name, flag, nativeName, population, region, subregion, capital, topLevelDomain, currencies, languages}}) {
+  const [borderCountries, setBorderCountries] = useState([]);
+
+  useEffect(() => {
+    const fetchBorders = border => {
+      fetch(`https://restcountries.eu/rest/v2/alpha/${border}`)
+        .then(result => result.json())
+        .then(result => setBorderCountries(prevState => ([...prevState, result])))
+    }
+
+    borders.forEach(border => fetchBorders(border))
+  }, [borders]);
+
   let history = useHistory();
 
   return (
@@ -14,39 +26,43 @@ function DetailPage({country}) {
         <span>Back</span>
       </button>
       <div className="detailPage__country">
-        <img src={country.flag} alt={country.name + ' flag'}/>
-        <h1>{country.name}</h1>
-        {console.log(country)}
+        <img src={flag} alt={name + ' flag'}/>
+        <h1>{name}</h1>
         <div className="country__primaryInfo">
           <p>
-            <strong>Native Name: </strong>{country.nativeName}
+            <strong>Native Name: </strong>{nativeName}
           </p>
           <p>
-            <strong>Population: </strong>{country.population.toLocaleString()}
+            <strong>Population: </strong>{population.toLocaleString()}
           </p>
           <p>
-            <strong>Region: </strong>{country.region}
+            <strong>Region: </strong>{region}
           </p>
           <p>
-            <strong>Sub Region: </strong>{country.subregion}
+            <strong>Sub Region: </strong>{subregion}
           </p>
           <p>
-            <strong>Capital: </strong>{country.capital}
+            <strong>Capital: </strong>{capital}
           </p>
         </div>
         <div className="country__secondaryInfo">
           <p>
-            <strong>Top Level Domain: </strong>{country.topLevelDomain}
+            <strong>Top Level Domain: </strong>{topLevelDomain}
           </p>
           <p>
-            <strong>Currencies: </strong>{country.currencies.map(country => country.name).join(', ')}
+            <strong>Currencies: </strong>{currencies.map(country => country.name).join(', ')}
           </p>
           <p>
-            <strong>Languages: </strong>{country.languages.map(country => country.name).join(', ')}
+            <strong>Languages: </strong>{languages.map(country => country.name).join(', ')}
           </p>
         </div>
         <div className="country__borderCountries">
           <h2>Border countries:</h2>
+          {borderCountries.map(country => (
+            <button key={country.name} className='borderCountries__button'>
+              {country.name}
+            </button>
+          ))}
         </div>
       </div>
     </>

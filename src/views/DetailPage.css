@@ -14,3 +14,15 @@
 .detailPage__backButton span {
   margin-left: 8pt;
 }
+
+.detailPage__country {
+  margin-top: 16pt;
+}
+
+.detailPage__country img {
+  width: 100%;
+}
+
+.country__secondaryInfo {
+  margin: 24pt 0;
+}
