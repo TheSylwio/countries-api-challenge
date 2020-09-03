@@ -1,0 +1,46 @@
+.detailPage__backButton {
+  border: 0;
+  border-radius: 4pt;
+  padding: 8pt 24pt;
+  align-self: flex-start;
+  box-shadow: 0 0 10px -5px hsl(0, 0%, 70%);
+  background: #FFFFFF;
+}
+
+.detailPage__backButton:hover {
+  cursor: pointer;
+}
+
+.detailPage__backButton span {
+  margin-left: 8pt;
+}
+
+.detailPage__country {
+  margin-top: 16pt;
+}
+
+.detailPage__country img {
+  width: 100%;
+}
+
+.country__secondaryInfo {
+  margin: 24pt 0;
+}
+
+.country__borderCountries {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.borderCountries__button {
+  box-shadow: 0 0 10px -5px hsl(0, 0%, 70%);
+  background: #FFFFFF;
+  border-radius: 4pt;
+  border: 0;
+  margin: 4pt 4pt 0 0;
+  padding: 8pt 24pt;
+}
+
+.borderCountries__button:hover {
+  cursor: pointer;
+}

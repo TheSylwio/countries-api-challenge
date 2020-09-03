@@ -1,14 +1,13 @@
-import React, {useState, useEffect} from 'react';
-import Card from "./components/Card";
-import Filter from "./components/Filter";
-import Navbar from "./components/Navbar";
-import SearchBar from "./components/SearchBar";
+import React, {useEffect, useState} from 'react';
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import './App.css';
+import Homepage from "./views/HomePage";
+import DetailPage from "./views/DetailPage";
+import slugify from "slugify";
+import Navbar from "./components/Navbar";
 
 function App() {
   const [countries, setCountries] = useState([]);
-  const [query, setQuery] = useState('');
-  const [filter, setFilter] = useState('');
 
   useEffect(() => {
     fetch('https://restcountries.eu/rest/v2/all')
@@ -16,35 +15,24 @@ function App() {
       .then(result => setCountries(() => result))
   }, []);
 
-  const handleSearch = event => setQuery(event.target.value);
-
-  const handleFilter = event => setFilter(event.target.value);
-
-  const filteredCountries = () => {
-    let filteredCountries = countries;
-
-    if (query) {
-      filteredCountries = filteredCountries.filter(country => country.name.toLowerCase().includes(query.toLowerCase()));
-    }
-
-    if (filter) {
-      filteredCountries = filteredCountries.filter(country => country.region.toLowerCase().includes(filter.toLowerCase()));
-    }
-
-    return filteredCountries;
-  }
-
   return (
-    <div className="app">
-      <Navbar/>
-      <div className="app__content">
-        <SearchBar handleSearch={handleSearch}/>
-        <Filter handleFilter={handleFilter}/>
-        {filteredCountries().map(({flag, name, population, region, capital}) => (
-          <Card key={name} flag={flag} name={name} population={population} region={region} capital={capital}/>
-        ))}
+    <Router>
+      <div className="app">
+        <Navbar/>
+        <div className="app__content">
+          <Switch>
+            <Route exact path='/'>
+              <Homepage countries={countries}/>
+            </Route>
+            {countries.map(country => (
+              <Route path={'/' + slugify(country.name.toLowerCase())} key={country.name}>
+                <DetailPage country={country}/>
+              </Route>
+            ))}
+          </Switch>
+        </div>
       </div>
-    </div>
+    </Router>
   );
 }
 
