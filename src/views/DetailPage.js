@@ -3,6 +3,7 @@ import {useHistory} from "react-router-dom";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faArrowLeft} from '@fortawesome/free-solid-svg-icons'
 import './DetailPage.css';
+import slugify from "slugify";
 
 function DetailPage({country: {borders, name, flag, nativeName, population, region, subregion, capital, topLevelDomain, currencies, languages}}) {
   const [borderCountries, setBorderCountries] = useState([]);
@@ -56,10 +57,11 @@ function DetailPage({country: {borders, name, flag, nativeName, population, regi
             <strong>Languages: </strong>{languages.map(country => country.name).join(', ')}
           </p>
         </div>
+        <h2>Border countries:</h2>
         <div className="country__borderCountries">
-          <h2>Border countries:</h2>
           {borderCountries.map(country => (
-            <button key={country.name} className='borderCountries__button'>
+            <button key={country.name} className='borderCountries__button'
+                    onClick={() => history.push(`/${slugify(country.name.toLowerCase(), {remove: /[*+~.()'"!:@]/g})}`)}>
               {country.name}
             </button>
           ))}

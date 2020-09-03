@@ -26,3 +26,21 @@
 .country__secondaryInfo {
   margin: 24pt 0;
 }
+
+.country__borderCountries {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.borderCountries__button {
+  box-shadow: 0 0 10px -5px hsl(0, 0%, 70%);
+  background: #FFFFFF;
+  border-radius: 4pt;
+  border: 0;
+  margin: 4pt 4pt 0 0;
+  padding: 8pt 24pt;
+}
+
+.borderCountries__button:hover {
+  cursor: pointer;
+}
