@@ -30,3 +30,10 @@
 .content__description strong {
   font-weight: 600;
 }
+
+@media (min-width: 1400px) {
+  .card {
+    width: 100%;
+    margin-top: 0;
+  }
+}
