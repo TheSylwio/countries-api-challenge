@@ -24,3 +24,9 @@
 .searchBar__input:focus {
   outline: 0;
 }
+
+@media (min-width: 1400px) {
+  .searchBar {
+    width: 40%;
+  }
+}

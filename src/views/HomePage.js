@@ -27,8 +27,10 @@ function Homepage(props) {
 
   return (
     <>
-      <SearchBar handleSearch={handleSearch}/>
-      <Filter handleFilter={handleFilter}/>
+      <div className="wrapper">
+        <SearchBar handleSearch={handleSearch}/>
+        <Filter handleFilter={handleFilter}/>
+      </div>
       <div className="cardsContainer">
         {filteredCountries().map(({flag, name, population, region, capital}) => (
           <Card key={name} flag={flag} name={name} population={population} region={region} capital={capital}/>
