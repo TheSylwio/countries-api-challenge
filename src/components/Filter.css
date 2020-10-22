@@ -81,3 +81,10 @@
     transform: scaleY(0);
   }
 }
+
+@media (min-width: 1400px) {
+  .filter {
+    width: 20%;
+    margin-top: 0;
+  }
+}
