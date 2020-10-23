@@ -13,18 +13,13 @@ export const NavbarHeader = styled.h1`
 `;
 
 export const DarkModeButton = styled.button`
-  background: #FAFAFA;
+  background: #fafafa;
   height: 3em;
   font-weight: 300;
   border-color: transparent;
   outline: 0;
-  
+
   &:hover {
     cursor: pointer;
   }
 `;
-
-// TODO: DELETE ME
-// .navbar__button span {
-//   margin-left: 8pt;
-// }
