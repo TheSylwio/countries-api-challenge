@@ -2,10 +2,10 @@ import React, {useEffect, useState} from 'react';
 import {useHistory} from "react-router-dom";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faArrowLeft} from '@fortawesome/free-solid-svg-icons'
-import './DetailPage.css';
+import './Country.css';
 import slugify from "slugify";
 
-function DetailPage({country: {borders, name, flag, nativeName, population, region, subregion, capital, topLevelDomain, currencies, languages}}) {
+function Country({country: {borders, name, flag, nativeName, population, region, subregion, capital, topLevelDomain, currencies, languages}}) {
   const [borderCountries, setBorderCountries] = useState([]);
 
   useEffect(() => {
@@ -71,4 +71,4 @@ function DetailPage({country: {borders, name, flag, nativeName, population, regi
   );
 }
 
-export default DetailPage;
+export default Country;
