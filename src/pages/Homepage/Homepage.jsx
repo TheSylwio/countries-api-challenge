@@ -1,43 +1,33 @@
-import React, {useState} from 'react';
-import {Content, OptionsWrapper} from './Homepage.styled';
-import CountriesGrid from "../../components/CountriesGrid";
-import Filter from "../../components/Filter/Filter";
-import Navbar from "../../components/Navbar";
-import SearchBar from "../../components/SearchBar/SearchBar";
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { Content, OptionsWrapper } from './Homepage.styled';
+import CountriesGrid from '../../components/CountriesGrid';
+import Filter from '../../components/Filter/Filter';
+import Navbar from '../../components/Navbar';
+import SearchBar from '../../components/SearchBar/SearchBar';
+import { updateCountries } from '../../redux/actions/root';
 
-const Homepage = (props) => {
-  const [query, setQuery] = useState('');
-  const [filter, setFilter] = useState('');
+const Homepage = () => {
+  const dispatch = useDispatch();
 
-  const handleSearch = ({target}) => setQuery(target.value);
-  const handleFilter = ({target}) => setFilter(target.value);
-  //
-  // const filteredCountries = () => {
-  //   let filteredCountries = props.countries;
-  //
-  //   if (query) {
-  //     filteredCountries = filteredCountries.filter(country => country.name.toLowerCase().includes(query.toLowerCase()));
-  //   }
-  //
-  //   if (filter) {
-  //     filteredCountries = filteredCountries.filter(country => country.region.toLowerCase().includes(filter.toLowerCase()));
-  //   }
-  //
-  //   return filteredCountries;
-  // }
+  useEffect(() => {
+    fetch('https://restcountries.eu/rest/v2/all')
+      .then(result => result.json())
+      .then(result => dispatch(updateCountries(result)));
+  }, [dispatch]);
 
   return (
     <>
-      <Navbar/>
+      <Navbar />
       <Content>
         <OptionsWrapper>
-          <SearchBar handleSearch={handleSearch}/>
-          <Filter handleFilter={handleFilter}/>
+          <SearchBar />
+          <Filter />
         </OptionsWrapper>
-        <CountriesGrid countries='123'/>
+        <CountriesGrid />
       </Content>
     </>
   );
-}
+};
 
 export default Homepage;

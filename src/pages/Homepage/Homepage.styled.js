@@ -16,7 +16,7 @@ export const Content = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 16pt;
-  
+
   @media (min-width: 1440px) {
     padding: 32pt;
   }
