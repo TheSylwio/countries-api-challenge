@@ -1,15 +1,16 @@
 import React from 'react';
-import Grid from "./CountriesGrid.styles";
+import { useSelector } from 'react-redux';
+import Grid from './CountriesGrid.styles';
+import getCountries from '../../redux/selectors/root';
+import Card from '../Card';
 
 const CountriesGrid = () => {
-  return(
+  const countries = useSelector(getCountries);
+
+  return (
     <Grid>
-      grid
-      {/*<div className="cardsContainer">*/}
-      {/*  {filteredCountries().map(({flag, name, population, region, capital}) => (*/}
-      {/*    <Card key={name} flag={flag} name={name} population={population} region={region} capital={capital}/>*/}
-      {/*  ))}*/}
-      {/*</div>*/}
+      {countries &&
+        countries.map(country => <Card country={country} key={country.name} />)}
     </Grid>
   );
 };
