@@ -11,6 +11,7 @@ const globalStyles = createGlobalStyle`
     padding: 0;
     margin: 0;
     background: hsl(0, 0%, 98%);
+    color: hsl(200, 15%, 8%);
   }
   
   a {
